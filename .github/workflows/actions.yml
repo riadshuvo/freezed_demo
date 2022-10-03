@@ -41,9 +41,10 @@ jobs:
             token: ${{ secrets.TOKEN }}
 
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+        uses: act10ns/slack@v1
         with:
           status: ${{ job.status }}
+          steps: ${{ toJson(steps }}
           channel: '#test'
           message: Deployed {{ env.GITHUB_REF_NAME }} branch Successfully
         if: always()
