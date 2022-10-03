@@ -40,8 +40,8 @@ jobs:
             tag: v1.0.${{ github.run_number }}
             token: ${{ secrets.TOKEN }}
 
-      - name: Slack Notification
-        uses: act10ns/slack@v1
+      - name: slack - GitHub Actions Slack integration
+        uses: act10ns/slack@v1.6.0
         with:
           status: ${{ job.status }}
           channel: '#test'
