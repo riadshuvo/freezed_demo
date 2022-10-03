@@ -39,4 +39,20 @@ jobs:
             artifacts: "build/app/outputs/apk/debug/*,build/ios/iphoneos/app.ipa"
             tag: v1.0.${{ github.run_number }}
             token: ${{ secrets.TOKEN }}
+
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        with:
+          status: ${{ job.status }}
+          channel: '#test'
+          message: Deployed {{ env.GITHUB_REF_NAME }} branch Successfully
+        if: always()
+        env:
+          SLACK_CHANNEL: general
+          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
+          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: 'Post Content :rocket:'
+          SLACK_TITLE: Post Title
+          SLACK_USERNAME: riead
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
   
