@@ -41,7 +41,7 @@ jobs:
             token: ${{ secrets.TOKEN }}
 
       - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+        uses: act10ns/slack@v1
         with:
           status: ${{ job.status }}
           channel: '#test'
